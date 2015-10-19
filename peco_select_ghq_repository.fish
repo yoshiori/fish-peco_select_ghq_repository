@@ -1,6 +1,8 @@
 function peco_select_ghq_repository
-  if test (count $argv) > 0
-    set peco_flags --query "$argv"
+  set -l query (commandline)
+
+  if test -n $query
+    set peco_flags --query "$query"
   end
 
   ghq list -p | peco $peco_flags | read line
